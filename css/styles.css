@@ -46,7 +46,9 @@
     --color-brand-light: #CFCFBC;
 }
 /*Base*/
-* {
+*,
+::before,
+::after {
     box-sizing: border-box;
 }
 
@@ -68,6 +70,10 @@ h5,
 h6,
 p {
     margin-top: 0;
+}
+
+a {
+    display: inline-block;
 }
 
 address {
@@ -102,7 +108,7 @@ ul {
 
 /*Button*/
 
-button {
+.button {
     padding: 16px 32px;
     border-radius: 8px;
     font-weight: 600;
@@ -112,7 +118,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.button:hover {
     background-color: transparent;
     color: var(--color-brand-normal);
 }
@@ -246,17 +252,50 @@ font-weight: 600;
 /*Chef section*/
 
 .chefs-title {
+    position: relative;
     max-width: 520px;
     margin: 0px auto 80px;
+}
+
+.chef-text p {
+    margin-bottom: 24px;
+}
+
+.chef-text p:last-child {
+    margin-bottom: 0;
 }
 
 .chefs-title::after,
 .chefs-title::before
  {
-    display: block;
+    position: absolute;
+    bottom: 24px;
     width: 352px;
     border: 2px solid var(--color-brand-light);
     content: '';
+}
+
+.chefs-title::before {
+    left: -360px;
+}
+
+.chefs-title::after {
+    right: -360px;
+}
+
+.chefs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 30px;
+}
+
+.chefs-item {
+    flex-basis: calc((100% - 30px) / 2);
+}
+
+.chef-card {
+    display: flex;
+    gap: 30px;
 }
 
 .chef-photo {
@@ -271,6 +310,12 @@ font-weight: 600;
 }
 
 /*Format section*/
+
+.formats-container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
 
 .format-list {
     display: flex;
@@ -304,13 +349,102 @@ font-weight: 600;
     font-weight: 300;
 }
 
+/*Carousel*/
+
+.carousel-button {
+display: flex;   
+align-items: center; 
+justify-content: center;
+flex-shrink: 0;
+width: 44px;
+height: 44px;
+padding: 0;
+border-radius: 50%;
+fill: var(--color-primary-dark);
+border: 1px solid var(--color-primary-dark);
+cursor: pointer;
+}
+
+.carousel-button:hover {
+    background-color: var(--color-primary-dark);
+    fill: var(--color-primary-light);
+}
+
 /*Contact section*/
+
+.contact-section {
+    padding-bottom: 96px;
+}
+
+.contact-container {
+    display: flex;
+    gap: 32px;
+}
 
 .contact-title {
     margin-bottom: 16px;
 }
 
+.contact-map {
+    flex-shrink: 0;
+    border: none;
+    border-radius: 16px;
+}
+
 /*Footer*/
+
+.footer {
+    padding: 32px 0;
+    position: relative;
+    background-image: url(../images/footer-background.png);
+    background-color: var(--color-primary-dark);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.footer::before,
+.footer::after {
+    position: absolute;
+    bottom: 0;
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.footer::before {
+    width: 180px;
+    height: 120px;
+    left: 0;
+    background-image: url(../images/decor-bread-small.png);
+}
+
+.footer::after {
+    width: 380px;
+    height: 190px;
+    right: 0;
+    background-image: url(../images/decor-bread-large.png);
+}
+
+.footer-container {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-nav,
+.footer-address {
+    display: flex;
+    flex-basis: 50%;
+}
+
+.footer-logo,
+.footer-menu {
+    flex-grow: 1;
+}
+
+.address-list,
+.address-info {
+    flex-grow: 1;
+}
 
 .address-link {
     color: var(--color-primary-light);
@@ -325,14 +459,40 @@ font-weight: 600;
     font-weight: 300;
 }
 
+.address-icon {
+    fill: var(--color-primary-light);
+}
+
 .address-copyright {
     font-size: 14px;
 }
 
-.footer {
-    background-image: url(../images/footer-background.png);
-    background-color: var(--color-primary-dark);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+/*Modal*/
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+.modal {
+    position: relative;
+    width: 880px;
+    height: 880px;
+    background-color: var(--color-primary-light);
+    border-radius: 32px;
+}
+
+.modal.is-hidden {
+    display: none;
+}
+
+.modal-btn-close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
 }

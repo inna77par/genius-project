@@ -1,7 +1,7 @@
 # genius-project
 
 забрать все файлы в новую версию
-git add .
+git
 
 создать новую версию
 git commit -m "Your message"
